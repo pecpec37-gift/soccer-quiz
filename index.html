@@ -521,7 +521,7 @@ const QUESTIONS = {
     { name:"エンゴロ・カンテ", hints:["🏟️ アル・イテハド（サウジアラビア）","📍 ポジション：MF","🌍 フランス代表 W杯2018優勝","🌟 W杯2018でのパフォーマンスが最高評価を受けたMF"] },
     { name:"イルカイ・ギュンドアン", hints:["🏟️ バルセロナ（スペイン）","📍 ポジション：MF","🌍 ドイツ代表 W杯2026出場","🌟 マンCとバルサで活躍するドイツの知性派MF"] },
     { name:"ジャマル・ムシアラ", hints:["🏟️ バイエルン・ミュンヘン（ドイツ）","📍 ポジション：MF/FW","🌍 ドイツ代表 W杯2026出場","🌟 バイエルンの10番を担う期待の若手"] },
-    { name:"フロリアン・ヴィルツ", hints:["🏟️ バイエルン・ミュンヘン（ドイツ）","📍 ポジション：MF","🌍 ドイツ代表 W杯2026出場","🌟 レバークーゼンを無敗優勝へ導いた天才MF"] },
+    { name:"フロリアン・ヴィルツ", hints:["🏟️ リヴァプール（イングランド）","📍 ポジション：MF","🌍 ドイツ代表 W杯2026出場","🌟 レバークーゼンを無敗優勝へ導いた天才MF"] },
     { name:"ジョアン・フェリックス", hints:["🏟️ チェルシー（イングランド）","📍 ポジション：FW","🌍 ポルトガル代表 W杯2026出場","🌟 アトレティコから移籍した高額タレント"] },
     { name:"マルティン・エデゴー", hints:["🏟️ アーセナル（イングランド）","📍 ポジション：MF","🌍 ノルウェー代表","🌟 アーセナルのキャプテンを務めるノルウェーの司令塔"] },
     { name:"コロ・ムアニ", hints:["🏟️ パリ・サンジェルマン（フランス）","📍 ポジション：FW","🌍 フランス代表 W杯2022準優勝","🌟 W杯決勝でゴールを決めたフランスのFW"] },
@@ -794,49 +794,5 @@ function renderRanking(m) {
 // init
 showScreen('top');
 </script>
-  <!-- ポータルに戻るボタン -->
-<style>
-.portal-back-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: rgba(26,26,26,0.88);
-  color: #f0d060;
-  font-family: 'Share Tech Mono', monospace, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  border-radius: 3px;
-  border: 1px solid rgba(240,208,96,0.35);
-  text-decoration: none;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  transition: background 0.15s, border-color 0.15s, transform 0.1s;
-  white-space: nowrap;
-}
-.portal-back-btn:hover {
-  background: rgba(26,26,26,0.97);
-  border-color: rgba(240,208,96,0.75);
-  transform: translateY(-1px);
-}
-.portal-back-btn:active { transform: translateY(0); }
-@media (max-width: 480px) {
-  .portal-back-btn {
-    bottom: 14px;
-    left: 14px;
-    padding: 8px 14px;
-    font-size: 11px;
-  }
-}
-</style>
-<a class="portal-back-btn"
-   href="https://pecpec37-gift.github.io/portal/">
-  &larr; とみやんのゲームランド
-</a>
 </body>
 </html>
