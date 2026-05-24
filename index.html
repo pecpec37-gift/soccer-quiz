@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <script src="https://pecpec37-gift.github.io/portal/stamp.js"></script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -537,7 +536,7 @@ const QUESTIONS = {
     { name:"フランツ・ベッケンバウアー", hints:["🏟️ バイエルン・ミュンヘン（故人）","📍 ポジション：DF/MF","🌍 西ドイツ代表 W杯1974優勝","🌟「皇帝」の愛称。選手と監督両方でW杯制覇"] },
     { name:"ヨハン・クライフ", hints:["🏟️ アヤックス、バルセロナ（故人）","📍 ポジション：FW","🌍 オランダ代表 W杯1974準優勝","🌟「トータルフットボール」の体現者・バロンドール3回"] },
     { name:"ティエリ・アンリ", hints:["🏟️ アーセナル、バルセロナ（引退）","📍 ポジション：FW","🌍 フランス代表 W杯1998優勝","🌟 プレミアリーグ得点記録を持つフランスの伝説的FW"] },
-    { name:"ロナウド（ポルトガル）", hints:["上記参照","📍 ポジション：FW","🌍 ポルトガル代表","🌟 CR7の略称で知られ、5つのビッグクラブでバロンドール受賞"] },
+    { name:"ロナウド（ポルトガル）", hints:["🏟️ アル・ナスル（サウジアラビア）","📍 ポジション：FW","🌍 ポルトガル代表","🌟 CR7の略称で知られ、5つのビッグクラブでバロンドール受賞"] },
     { name:"デイビッド・ベッカム", hints:["🏟️ マンチェスター・U、レアルなど（引退）","📍 ポジション：MF","🌍 イングランド代表 W杯1998・2002・2006出場","🌟 フリーキックの名手として世界的知名度を誇るMF"] },
     { name:"オリバー・カーン", hints:["🏟️ バイエルン・ミュンヘン（引退）","📍 ポジション：GK","🌍 ドイツ代表 W杯2002準優勝","🌟 W杯2002の最優秀選手に選ばれた守護神GK"] },
     { name:"パオロ・マルディーニ", hints:["🏟️ ACミラン（引退）","📍 ポジション：DF","🌍 イタリア代表 W杯1994準優勝","🌟 ACミラン一筋で欧州制覇5回の伝説的DF"] },
@@ -794,171 +793,6 @@ function renderRanking(m) {
 
 // init
 showScreen('top');
-</script>
-  <!-- ポータルに戻るボタン -->
-<style>
-.portal-back-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: rgba(26,26,26,0.88);
-  color: #f0d060;
-  font-family: 'Share Tech Mono', monospace, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  border-radius: 3px;
-  border: 1px solid rgba(240,208,96,0.35);
-  text-decoration: none;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  transition: background 0.15s, border-color 0.15s, transform 0.1s;
-  white-space: nowrap;
-}
-.portal-back-btn:hover {
-  background: rgba(26,26,26,0.97);
-  border-color: rgba(240,208,96,0.75);
-  transform: translateY(-1px);
-}
-.portal-back-btn:active { transform: translateY(0); }
-@media (max-width: 480px) {
-  .portal-back-btn {
-    bottom: 14px;
-    left: 14px;
-    padding: 8px 14px;
-    font-size: 11px;
-  }
-}
-</style>
-<a class="portal-back-btn"
-   href="https://pecpec37-gift.github.io/portal/">
-  &larr; とみやんのゲームランド
-</a>
-  <!-- ⭐ スタンプ送信（とみやんのゲームランド） -->
-<script>
-(function() {
-  var GAME_ID = 'soccer-quiz';
-  // プレーヤー名をポータルから自動セット
-  if (window.TomyStamp) {
-    var saved = TomyStamp.getPlayer();
-    if (saved) {
-      // input[type=text] の最初の要素にプレーヤー名をセット
-      var inputs = document.querySelectorAll('input[type=text], input:not([type])');
-      inputs.forEach(function(el) {
-        var ph = (el.placeholder || '').toLowerCase();
-        if (ph.indexOf('プレーヤー') !== -1 || ph.indexOf('player') !== -1 || ph.indexOf('name') !== -1 || ph.indexOf('名前') !== -1) {
-          if (!el.value) el.value = saved;
-        }
-      });
-    }
-  }
-
-  // 結果表示関数をラップしてスタンプ送信
-  var _origShow = window.showResult || window.showResultScreen || window.displayResult || null;
-  
-  // MutationObserver で結果画面の表示を監視
-  var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) {
-      m.addedNodes.forEach(function(node) {
-        if (node.nodeType !== 1) return;
-        // 結果画面の要素を探す
-        var resultEl = node.querySelector ? node.querySelector('[class*="result"],[id*="result"],[class*="Result"],[id*="Result"]') : null;
-        if (!resultEl) return;
-        sendStampFromDOM(node);
-      });
-    });
-    // 表示切り替えによる結果画面も監視
-    mutations.forEach(function(m) {
-      if (m.type === 'attributes' && m.attributeName === 'style') {
-        var el = m.target;
-        var id = (el.id || '').toLowerCase();
-        var cls = (el.className || '').toLowerCase();
-        if ((id.indexOf('result') !== -1 || cls.indexOf('result') !== -1) && el.style.display !== 'none') {
-          sendStampFromDOM(document.body);
-        }
-      }
-    });
-  });
-  observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
-
-  function sendStampFromDOM(root) {
-    if (!window.TomyStamp) return;
-    // 正解数を画面から読み取る
-    var correctCount = 0;
-    var genreName = '';
-    
-    // 正解数の要素を探す（よくあるパターン）
-    var selectors = [
-      '[id*="correct"],[class*="correct"]',
-      '[id*="seikai"],[class*="seikai"]',
-      '[id*="score"],[class*="score"]'
-    ];
-    for (var i = 0; i < selectors.length; i++) {
-      var el = root.querySelector(selectors[i]);
-      if (el) {
-        var num = parseInt(el.textContent);
-        if (!isNaN(num) && num > 0 && num <= 10) {
-          correctCount = num;
-          break;
-        }
-      }
-    }
-    
-    // グローバル変数からも取得を試みる
-    var globalVars = ['correctCount','correctNum','seikaiCount','correct','seikai'];
-    for (var j = 0; j < globalVars.length; j++) {
-      if (typeof window[globalVars[j]] === 'number') {
-        correctCount = window[globalVars[j]];
-        break;
-      }
-    }
-    
-    // ジャンル名を取得
-    var genreVars = ['currentGenre','selectedGenre','genreName','genre','currentCategory'];
-    for (var k = 0; k < genreVars.length; k++) {
-      if (typeof window[genreVars[k]] === 'string' && window[genreVars[k]]) {
-        genreName = window[genreVars[k]];
-        break;
-      }
-    }
-    if (!genreName) genreName = 'default';
-    
-    // プレーヤー名
-    var player = TomyStamp.getPlayer();
-    if (!player) {
-      // 画面上のinputから取得
-      document.querySelectorAll('input[type=text], input:not([type])').forEach(function(el) {
-        var ph = (el.placeholder || '').toLowerCase();
-        if (ph.indexOf('プレーヤー') !== -1 || ph.indexOf('player') !== -1) {
-          if (el.value) player = el.value;
-        }
-      });
-    }
-    if (player) TomyStamp.setPlayer(player);
-    
-    if (correctCount >= 9) {
-      TomyStamp.send(GAME_ID, genreName, correctCount)
-        .then(function(r) { if(r.ok) console.log('[⭐ stamp] 獲得! game=' + GAME_ID + ' genre=' + genreName + ' correct=' + correctCount); });
-    }
-  }
-
-  // showResult 系の関数を上書き（確実な送信）
-  ['showResult','showResultScreen','displayResult','showResultPage','endGame','finishGame','showFinalResult'].forEach(function(fn) {
-    if (typeof window[fn] === 'function') {
-      var orig = window[fn];
-      window[fn] = function() {
-        var ret = orig.apply(this, arguments);
-        setTimeout(function() { sendStampFromDOM(document.body); }, 200);
-        return ret;
-      };
-    }
-  });
-})();
 </script>
 </body>
 </html>
