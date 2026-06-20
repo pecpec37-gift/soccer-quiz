@@ -224,7 +224,11 @@
     transition: background 0.15s, border-color 0.15s, transform 0.1s;
     text-align: center; line-height: 1.3;
   }
-  .opt-btn:hover:not(:disabled) { background: rgba(37,163,82,0.15); border-color: var(--green); transform: scale(1.02); }
+  @media (hover: hover) and (pointer: fine) {
+    .opt-btn:hover:not(:disabled) { background: rgba(37,163,82,0.15); border-color: var(--green); transform: scale(1.02); }
+  }
+  .opt-btn:focus { outline: none; }
+  .opt-btn:focus-visible { outline: none; }
   .opt-btn.correct { background: rgba(37,163,82,0.3) !important; border-color: var(--green-light) !important; color: #7dffb2 !important; }
   .opt-btn.wrong   { background: rgba(255,68,68,0.2)  !important; border-color: #ff4444 !important; color: #ff8888 !important; }
   .opt-btn:disabled { cursor: default; transform: none; }
@@ -345,8 +349,8 @@
 <!-- ══ TOP ══ -->
 <div id="screen-top">
   <div class="title-badge">⚽ SOCCER QUIZ</div>
-  <div class="title-sub">FIFAワールドカップ2026 記念版</div>
-  <div class="wc-banner">🏆 W杯2026の選手を知ってW杯観戦をもっと楽しもう！</div>
+  <div class="title-sub">FIFAワールドカップ2026 北中米大会 開催中！</div>
+  <div class="wc-banner">🏆 W杯2026開催中！選手を知って観戦をもっと楽しもう！</div>
   <div class="mode-grid">
     <div class="mode-card" onclick="selectMode('japan')">
       <span class="mode-flag">🇯🇵</span>
@@ -358,7 +362,7 @@
       <span class="mode-flag">🌍</span>
       <div class="mode-title">海外の選手</div>
       <div class="mode-desc">世界のスター選手<br>現役〜往年の名手</div>
-      <div class="mode-count">全50問</div>
+      <div class="mode-count">全55問</div>
     </div>
   </div>
   <div class="rules-box">
@@ -452,7 +456,7 @@ const QUESTIONS = {
     // W杯2026メンバー・有力候補
     { name:"三笘 薫", hints:["🏟️ ブライトン（イングランド）","📍 ポジション：左MF/FW","🇯🇵 W杯2026 日本代表","🌟 ドリブル突破とクロスが武器のウインガー"] },
     { name:"久保 建英", hints:["🏟️ レアル・ソシエダ（スペイン）","📍 ポジション：MF/FW","🇯🇵 W杯2026 日本代表","🌟 愛称「タケ」スペインリーグで活躍する天才"] },
-    { name:"鎌田 大地", hints:["🏟️ クリスタル・パレス（イングランド）","📍 ポジション：MF","🇯🇵 W杯2026 日本代表","🌟 ボランチとしてチームの攻撃を司る"] },
+    { name:"鎌田 大地", hints:["🏟️ クリスタル・パレス（イングランド）","📍 ポジション：MF","🇯🇵 W杯2026 日本代表","🌟 W杯2026オランダ戦で土壇場の同点ゴールを決めた"] },
     { name:"遠藤 航", hints:["🏟️ リヴァプール（イングランド）","📍 ポジション：ボランチ","🇯🇵 日本代表キャプテン","🌟 W杯2022の獅子奮迅の守備が話題に"] },
     { name:"上田 綺世", hints:["🏟️ フェイエノールト（オランダ）","📍 ポジション：FW","🇯🇵 W杯2026 日本代表","🌟 センターFWとして代表の得点源"] },
     { name:"堂安 律", hints:["🏟️ フランクフルト（ドイツ）","📍 ポジション：MF/FW","🇯🇵 W杯2022・2026 日本代表","🌟 ドイツ戦での同点ゴールが鮮烈だった"] },
@@ -466,7 +470,7 @@ const QUESTIONS = {
     { name:"菅原 由勢", hints:["🏟️ ブレーメン（ドイツ）","📍 ポジション：右SB","🇯🇵 W杯2026 日本代表","🌟 オランダからドイツへ移籍した右サイドバック"] },
     { name:"谷口 彰悟", hints:["🏟️ シント＝トロイデン（ベルギー）","📍 ポジション：CB","🇯🇵 W杯2026 日本代表","🌟 経験豊富なセンターバックのリーダー"] },
     { name:"佐野 海舟", hints:["🏟️ マインツ（ドイツ）","📍 ポジション：MF","🇯🇵 W杯2026 日本代表","🌟 次代の守備的MFとして頭角を現す"] },
-    { name:"中村 敬斗", hints:["🏟️ スタッド・ランス（フランス）","📍 ポジション：FW","🇯🇵 W杯2026 日本代表","🌟 フランスリーグで活躍する快速ウインガー"] },
+    { name:"中村 敬斗", hints:["🏟️ スタッド・ランス（フランス）","📍 ポジション：FW","🇯🇵 W杯2026 日本代表","🌟 W杯2026オランダ戦で1点目の同点ゴールを決めた快速WG"] },
     { name:"小川 航基", hints:["🏟️ NECナイメヘン（オランダ）","📍 ポジション：FW","🇯🇵 W杯2026 日本代表","🌟 ポストプレーと高さを兼ね備えたストライカー"] },
     { name:"町野 修斗", hints:["🏟️ メンヒェングラートバッハ（ドイツ）","📍 ポジション：FW","🇯🇵 W杯2026 日本代表","🌟 185cmの高さとスピードを持つポストFW"] },
     { name:"瀬古 歩夢", hints:["🏟️ ル・アーブル（フランス）","📍 ポジション：CB","🇯🇵 W杯2026 日本代表","🌟 次世代の中心CBとして期待される選手"] },
@@ -534,6 +538,10 @@ const QUESTIONS = {
     { name:"コロ・ムアニ", hints:["🏟️ パリ・サンジェルマン（フランス）","📍 ポジション：FW","🌍 フランス代表 W杯2022準優勝","🌟 W杯決勝でゴールを決めたフランスのFW"] },
     { name:"ダービン・ヌニェス", hints:["🏟️ リヴァプール（イングランド）","📍 ポジション：FW","🌍 ウルグアイ代表 W杯2026出場","🌟 ベンフィカから約100億円でリヴァプールへ移籍"] },
     { name:"ジャック・グリーリッシュ", hints:["🏟️ マンチェスター・シティ（イングランド）","📍 ポジション：MF/FW","🌍 イングランド代表 W杯2026出場","🌟 独特のドリブルスタイルとキャラクターで人気のMF"] },
+    { name:"フィルジル・ファン・ダイク", hints:["🏟️ リヴァプール（イングランド）","📍 ポジション：CB","🌍 オランダ代表キャプテン W杯2026出場","🌟 W杯2026初戦・日本戦で先制点も決めた世界最高峰のCB"] },
+    { name:"ラウタロ・マルティネス", hints:["🏟️ インテル（イタリア）","📍 ポジション：FW","🌍 アルゼンチン代表 W杯2022優勝・2026出場","🌟 王者アルゼンチンの主砲を務める得点力抜群のCF"] },
+    { name:"フリアン・アルバレス", hints:["🏟️ アトレティコ・マドリード（スペイン）","📍 ポジション：FW","🌍 アルゼンチン代表 W杯2022優勝・2026出場","🌟 W杯2022優勝に貢献した万能型ストライカー"] },
+    { name:"アクラフ・ハキミ", hints:["🏟️ パリ・サンジェルマン（フランス）","📍 ポジション：右SB","🌍 モロッコ代表 W杯2026出場","🌟 W杯2022でモロッコをベスト4へ導いた攻撃的右SB"] },
     // 往年の名手
     { name:"ロナウド（ブラジル）", hints:["🏟️ バルセロナ、レアル、インテルなど（引退）","📍 ポジション：FW","🌍 ブラジル代表 W杯1994・1998・2002・2006出場","🌟「現象」の愛称。W杯通算15得点を誇る伝説のFW"] },
     { name:"ロナウジーニョ", hints:["🏟️ バルセロナなど（引退）","📍 ポジション：FW","🌍 ブラジル代表 W杯2002優勝","🌟 バロンドール2004・歴史上最も巧みな選手の1人"] },
@@ -683,6 +691,7 @@ function loadQuestion() {
 function answer(btn, chosen, correct) {
   const btns = document.querySelectorAll('.opt-btn');
   btns.forEach(b => b.disabled = true);
+  if (btn && btn.blur) btn.blur();
   hintTimers.forEach(clearTimeout);
 
   // show all hints immediately
